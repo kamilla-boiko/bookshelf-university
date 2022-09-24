@@ -1,0 +1,22 @@
+body {
+    margin-top: 20px;
+    padding: 15px;
+}
+
+.sidebar-nav {
+    padding: 0;
+    list-style: none;
+}
+
+.photo {
+    float: left;
+    margin-right: 15px;
+}
+
+.cleared {
+  clear: left;
+}
+
+.bio {
+    text-align: justify;
+}

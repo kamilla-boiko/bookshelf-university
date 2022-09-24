@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Home page</h1>
+  <p>Welcome to my Book Shelf</p>
+  <h3>Bookshelf content:</h3>
+  <ul>
+    <li>Amount of books: {{ num_books }}</li>
+    <li>Amount of  authors: {{ num_authors }}</li>
+  </ul>
+
+  <p>
+    You have visited this page {{ num_visits }} time{{ num_visits|pluralize }}.
+  </p>
+{% endblock %}

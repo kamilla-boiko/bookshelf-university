@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    {{ author.first_name }} {{ author.last_name }}
+    <a style="float:right" href="{% url 'catalog:author-update' pk=author.id %}" class="btn btn-secondary link-to-page">
+      Update
+    </a>
+  </h1>
+  <h2>{{ author.country }}, ({{ author.birth_date.year }}{% if author.death_date %} - {{ author.death_date.year }}{% endif %})</h2>
+  <div>
+    {% if author.photo %}
+      <img class="photo" src="{{ author.photo.url }}" alt="photo" height="200">
+    {% endif %}
+    <p class="bio">{{ author.bio }}</p>
+  </div>
+
+  <div class="ml-3 cleared">
+    <br>
+    <h3>Books</h3>
+
+    {% for book in author.books.all %}
+        <hr>
+        <h4><strong>Title:</strong> {{ book.title }}</h4>
+        <p><strong>Genre:</strong> {{ book.format.name }}</p>
+        <p><strong>Rate:</strong> {{ book.rate }}</p>
+    {% empty %}
+      <p>No books!</p>
+    {% endfor %}
+  </div>
+{% endblock %}

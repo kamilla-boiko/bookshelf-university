@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+  <h1>
+    Author List
+    <a style="float:right" class="btn btn-primary" href="{% url 'catalog:author-create' %}">+</a>
+  </h1>
+
+  <form action="" method="get" class="form-inline">
+    {{ search_form|crispy }}
+    <input class="btn btn-secondary" type="submit" value="🔎">
+  </form>
+
+  <br>
+
+  {% if author_list %}
+    <table class="table">
+      <tr>
+        <th>ID</th>
+        <th>Full Name</th>
+        <th>Country</th>
+        <th>Books</th>
+      </tr>
+
+      {% for author in author_list %}
+        <tr>
+          <td>
+            {{ author.id }}
+          </td>
+          <td>
+            <a href="{{ author.get_absolute_url }}">{{ author.first_name }} {{ author.last_name }}</a>
+          </td>
+          <td>
+            {{ author.country }}
+          </td>
+          <td>
+            {% for book in author.books.all %}
+              <ul>
+                <li>{{ book.title }}</li>
+              </ul>
+            {% endfor %}
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <p>There are no authors</p>
+  {% endif %}
+{% endblock %}

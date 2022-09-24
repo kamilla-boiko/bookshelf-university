@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div>
+    {% if book.image %}
+      <img class="photo" src="{{ book.image.url }}" alt="image" height="250">
+    {% endif %}
+    <h1>
+      Title: {{ book.title }}
+      <a style="float:right" class="btn btn-secondary" href="{% url 'catalog:book-update' pk=book.id %}">Edit</a>
+    </h1>
+    <br>
+    <p><strong>Genre:</strong> {{ book.format.name }}</p>
+    <p><strong>Rate:</strong> {{ book.rate }}</p>
+    <p><strong>Link:</strong><a href="{{ book.book_hyperlink }}" target="_blank"> Read book here:)</a></p>
+  </div>
+
+  <div class="ml-3 cleared">
+    <br>
+    <h3>Authors:</h3>
+
+    {% for author in book.authors.all %}
+      <hr>
+      <p class="text-muted"><strong>Id:</strong> {{ author.id }}</p>
+      <p>
+        <strong>Full name: </strong>
+        {{ author.first_name }} {{ author.last_name }}
+      </p>
+    {% empty %}
+      <p>No authors!</p>
+    {% endfor %}
+  </div>
+{% endblock %}

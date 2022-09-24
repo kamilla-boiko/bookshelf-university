@@ -1,0 +1,17 @@
+{%  extends "base.html" %}
+
+{% block content %}
+  <h1>
+    Country List
+  </h1>
+  <br>
+  {% if countries %}
+    <ul>
+      {% for country in countries %}
+        <li>{{ country }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>There are no countries in library</p>
+  {% endif %}
+{% endblock %}
